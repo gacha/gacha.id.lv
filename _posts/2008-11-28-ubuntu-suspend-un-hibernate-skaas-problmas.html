@@ -1,0 +1,28 @@
+---
+layout: post
+title: Ubuntu suspend un hibernate skaņas problēmas
+categories: []
+tags: ["ubunt", "linux", "howto", "laptop"]
+published: true
+enable_comments: false
+---
+{% include JB/setup %}
+
+		
+			
+<p>Esmu novērojis uz vairākiem laptopiem, ka pēc iemidzināšanas to atmodinot vairs nav skaņas, tas ir diezgan kaitinoši. Lai dabūtu skaņu atpakaļ nepieciešama izlogošanās vai pat restarts. Es uz doto brīdi lietoju Fujitsu SIemens Esprimo, kuram šo problēmu novērsu atverot <code>sudo vim /etc/default/acpi-support</code> un ievietojot sekojošas rindiņas:
+</p>
+<p /><div class="source"><pre><span class="nv">MODULES</span><span class="o">=</span><span class="s2">&quot;snd-hda-intel snd-pcm-oss snd-mixer-oss snd-pcm snd-seq-dummy snd-s&quot;</span>
+<span class="nv">RESTORE_SOUND</span><span class="o">=</span><span class="nb">true</span>
+</pre></div>
+
+
+<p>Mainīgam <code>MODULES</code> ir jāsatur skaņas moduļi konkrēti tavam laptopam, šie ir tikai manējam, kādus izmanto tavs laptops skaties ar komandu <code>lsmod</code>.
+</p>
+<p>Ja  nu šis nestrādā, tad ja tu lieto <em>pulseaudio</em>, tad izpildi šo komandu <code>killall pulseaudio &amp;&amp; /usr/bin/pulseaudio -D --log-target=syslog</code>, bet ja <em>alsu</em>, tad šo komandu <code>sudo /sbin/alsa force-reload</code>.
+</p>
+<p>Ja labi grib, tad var atrast <em>eventu</em>, kur jāpieliek šī rindiņa pie laptopa atmošanās.
+</p>
+
+		
+	

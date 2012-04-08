@@ -1,0 +1,35 @@
+---
+layout: post
+title: 7 dienu backups
+categories: []
+tags: ["linux"]
+published: true
+enable_comments: false
+---
+{% include JB/setup %}
+
+		
+			
+<p>Kā jau visi zin, tad īsti džeki backupu nekad netaisa, bet sagadījies tā, ka apstākļi spiež man to darīt. Tad nu meklēju visvienkāršāko veidu, kā to paveikt un protams pirmais, kas ienāk prātā ir <a href="http://samba.anu.edu.au/rsync/">rsync</a> programmiņa, ar kuras palīdzību var veikt visādas failu sinhronizācijas, tai skaitā arī backup veidošanu. Viņu lapusē pie <a href="http://samba.anu.edu.au/rsync/examples.html">examples</a> izmantojot pirmo piemēru izveidoju šādu skriptu:  <br />
+</p>
+{% highlight bash %}
+#!/bin/sh
+
+SOURCE=/var/www/
+DESTINATION=/archive/www/`date +%A`
+EXCLUDES=/archive/www/excludes
+
+
+OPTS=&quot;--backup --backup-dir=$DESTINATION --delete -a --ignore-errors --delete-excluded --exclude-from=$EXCLUDES&quot;
+
+rsync $OPTS $SOURCE $DESTINATION
+{% endhighlight %}
+<p><em>SOURCE</em> ir mape, kuru arhivēt, <em>DESTINATION</em> ir mape uz kuru arhivēt un <em>EXCLUDES</em> ir fails ar lietām, kuras nav nepieciešams arhivēt. Šo skriptu ieliku <code>/etc/cron.daily/</code> mapē un uzliku tam <code>chmod +x</code>, lai tas katru dienu izpildītos. Kā rezultātā iegūšu 7 dienu arhīvu, jo <em>rsync</em> katru dienu sinhronizēs arhīvu uz mapi ar tekošās dienas nosaukumu. Vēl es <em>EXCLUDE</em> failā ierakstiju tādas rindas, kā *.jpg, *.png utm., lai taupītu hdd vietu, bet tas jau katram individuāli.  <br />
+</p>
+<p><strong>Papildināts</strong> <br />
+</p>
+<p>Pēc <a href="http://atoms.netparks.lv/blog/">Atoma</a> ieteikuma pamēģināju <a href="http://www.nongnu.org/rdiff-backup/">rdiff-backup</a> un secināju, ka tas ir tieši tas, kas man nepieciešams, jo tas veido failu versiju sistēmu līdzīgu, kā <a href="http://subversion.tigris.org/">svn</a> un tādēļ saglabājot 7 dienu arhīvu es ietaupu daudz vietas uz hdd, jo dati netiek dublēti. Vēl man patīk tas, ka datus ir ļoti elementāri dabūt atpakaļ, piemēram es vēlos atgriezt <code>/etc/make.conf</code> tādu, kāds tas bija 3 dienas atpakaļ - <code>rdiff-backup -r 3D /backup/etc/make.conf /tmp/make.conf</code>, tik pat viegli var arī izdzēst failus kuri vecāki par noteiktu laiku.
+</p>
+
+		
+	

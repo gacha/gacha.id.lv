@@ -1,0 +1,55 @@
+---
+layout: post
+title: Tabulu rindu krāsošana ar Prototype
+categories: []
+tags: ["web", "javascript", "kods"]
+published: true
+enable_comments: false
+---
+{% include JB/setup %}
+
+		
+			
+<p>Bieži attēlojot datus tabulā tie nav ļoti labi pārskatāmi, jo dažkārt tabula ir ļoti plata ar daudz kolonnām, tādējādi ir grūti saprast, kur rinda sākas un kur tā īsti beidzas. Tāpēc ir ļoti patīkami, ja uzklikšķinot uz rindas tā iekrāsojas un uzklikšķinot vēlreiz tā iegūst iepriekšējo izskatu.  <br />
+</p>
+<p>Pirmais ko izdaram ir izveidojam divas CSS klases, vienu kad rinda ir aktīva un vienu, kad nav aktīva:  <br />
+</p>
+<p /><div class="source"><pre><span class="nc">.row_normal</span> <span class="p">{</span>
+	<span class="k">background-color</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.row_higlighted</span> <span class="p">{</span>
+	<span class="k">background-color</span><span class="o">:</span> <span class="m">#f5f5f5</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+ <br />
+
+<p>Kā nākamo mēs varētu izveidot pašu tabulu, kurai piešķiram arī ID atribūtu, manā gadījumā <code>id=&quot;dati&quot;</code>. Kad tabula ar datiem ir izveidota, kā arī CSS ir ielikt pareizā vietā, tad atliek vien izveidot šo JavaScript koda gabalu:  <br />
+</p>
+<p /><div class="source"><pre><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="k">function</span><span class="p">(){</span>
+	<span class="k">var</span> <span class="nx">rows</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;dati&#39;</span><span class="p">).</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">);</span>
+	<span class="k">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">$A</span><span class="p">(</span><span class="nx">rows</span><span class="p">);</span>
+	
+	<span class="nx">nodes</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nx">node</span><span class="p">){</span>
+		<span class="nx">Event</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nx">node</span><span class="o">,</span> <span class="s1">&#39;click&#39;</span><span class="o">,</span> <span class="k">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="nx">Element</span><span class="p">.</span><span class="nx">hasClassName</span><span class="p">(</span><span class="nx">node</span><span class="o">,</span> <span class="s1">&#39;row_higlighted&#39;</span><span class="p">)){</span>
+				<span class="nx">Element</span><span class="p">.</span><span class="nx">removeClassName</span><span class="p">(</span><span class="nx">node</span><span class="o">,</span><span class="s1">&#39;row_higlighted&#39;</span><span class="p">);</span>
+				<span class="nx">Element</span><span class="p">.</span><span class="nx">addClassName</span><span class="p">(</span><span class="nx">node</span><span class="o">,</span> <span class="s1">&#39;row_normal&#39;</span><span class="p">);</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+				<span class="nx">Element</span><span class="p">.</span><span class="nx">removeClassName</span><span class="p">(</span><span class="nx">node</span><span class="o">,</span><span class="s1">&#39;row_normal&#39;</span><span class="p">)</span>
+				<span class="nx">Element</span><span class="p">.</span><span class="nx">addClassName</span><span class="p">(</span><span class="nx">node</span><span class="o">,</span> <span class="s1">&#39;row_higlighted&#39;</span><span class="p">);</span>	
+			<span class="p">}</span>
+		<span class="p">});</span>
+	<span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+ <br />
+
+<p>kuru ievietojam kaut kur starp <code>HEAD</code> tagiem. Un tas ir arī viss, pārlādējot lapu, mūsu koda gabals katrai tabulas rindai piešķirs <em>notikumu</em> <code>onclick=&quot;&quot;</code>, kurš izpildīsies uzspiežot uz tās.  <br />
+</p>
+<p>Piemirsu pašu galveno, viss augšup minētais darbojas pateicoties <a href="http://prototype.conio.net/">Prototype</a> bibliotēkai, kuru nepieciešams iekļaut virs šī skripta. 
+</p>
+<p><strong>EDIT:</strong> atradu gatavu risinājumu <a href="http://thinkof.net/projects/js/highlight/highlight.html">šeit</a>
+</p>
+
+		
+	

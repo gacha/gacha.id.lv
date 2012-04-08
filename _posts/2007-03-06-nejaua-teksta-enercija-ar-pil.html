@@ -1,0 +1,32 @@
+---
+layout: post
+title: Nejauša teksta ģenerācija ar PIL
+categories: []
+tags: ["python", "kods"]
+published: true
+enable_comments: false
+---
+{% include JB/setup %}
+
+		
+			
+<p>Izveidoju mazu Python funkciju, kura ģenerē mazu bildīti, kur ir attēloti pirmie 3 burti no nejauši izvēlētiem vārdiem. Nav nekādu efektu vai citu fīču, kā <em>saķeburot</em> attēlu, jo tas man nav nepieciešams, pret parastajiem botiem ar šito pilnībā pietiek.  <br />
+</p>
+<p /><div class="source"><pre><span class="k">import</span> <span class="nn">re</span><span class="o">,</span><span class="nn">random</span><span class="o">,</span><span class="nn">Image</span><span class="o">,</span><span class="nn">ImageDraw</span><span class="o">,</span><span class="nn">ImageFont</span>
+
+<span class="k">def</span> <span class="nf">im_gen</span><span class="p">():</span>
+	<span class="n">im</span> 	<span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span> <span class="s">&#39;white&#39;</span><span class="p">)</span>
+	<span class="n">draw</span> 	<span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+	<span class="n">font</span> 	<span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">truetype</span><span class="p">(</span><span class="s">&#39;StayPuft.ttf&#39;</span><span class="p">,</span><span class="mi">21</span><span class="p">)</span>
+	<span class="n">text</span> 	<span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&#39;[^\w]&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;/usr/share/dict/words&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()))[:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+	<span class="n">size</span>	<span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+	<span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(((</span><span class="mi">50</span> <span class="o">-</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">text</span><span class="p">,</span><span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
+	<span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;im.jpg&#39;</span><span class="p">,</span> <span class="s">&quot;JPEG&quot;</span><span class="p">,</span><span class="n">quality</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img src="http://gacha.id.lv/rand_code/" alt="Nejauši burtiņi" />
+</p>
+
+		
+	

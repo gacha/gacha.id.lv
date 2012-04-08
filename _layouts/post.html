@@ -1,0 +1,51 @@
+---
+layout: default
+---
+{% include JB/setup %}
+<article>
+  <h1>{{ page.title }}</h1> 
+  <div class="body">{{ content }}</div>
+  <div class="clear"></div>
+  <div class="pagination">
+    <ul>
+    {% if page.previous %}
+      <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; Iepriekšējais</a></li>
+    {% else %}
+      <li class="prev disabled"><a>&larr; Iepriekšējais</a></li>
+    {% endif %}
+      <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Rakstu arhīvs</a></li>
+    {% if page.next %}
+      <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Nākamais &rarr;</a></li>
+    {% else %}
+      <li class="next disabled"><a>Nākamais &rarr;</a>
+    {% endif %}
+    </ul>
+  </div>
+  {% if page.enable_comments %}
+    <div id="disqus_thread">
+      {% include JB/comments %}
+    </div>
+  {% endif %}
+</article>
+<aside>
+  <h4>Publicēts</h4>
+  <time>{{ page.date | localize: ":long_date" }}</time>
+  {% unless page.tags == empty %}
+    <h4>Tagi</h4>
+    <ul class="tag_box">
+    {% assign tags_list = page.tags %}
+    {% include JB/tags_list %}
+    </ul>
+    <br class="clear" />
+  {% endunless %}
+  <g:plusone annotation="inline"></g:plusone>
+  <script type="text/javascript">
+    window.___gcfg = {lang: 'lv'};
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+</aside>
+<div class="clear"></div>
