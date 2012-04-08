@@ -3,24 +3,23 @@
 <html lang="lv">
   <head>
     <meta charset="utf-8" />
-      <title>Gatis Tomsons: gatis tomsons</title>
-      
-      <meta name="description" content="Gata Tomsona tīmekļa vietne" />
-      
-      <meta content="index, follow" name="robots" />
-      <meta content="Gatis Tomsons" name="author" />
-      <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-      <![endif]-->
-      <link href="http://fonts.googleapis.com/css?family=Comfortaa:700|Jura:300" rel="stylesheet" type="text/css" />
-      <link href="http://gacha.id.lv/atom.xml" rel="alternate" title="Raksti RSS formātā" type="application/atom+xml" />
-      <link href="/assets/css/global.css" media="screen" rel="stylesheet" type="text/css" />
-      <link href="/assets/css/pygments_pastie.css" media="screen" rel="stylesheet" type="text/css" />
-      <link href="/assets/css/colorbox.css" media="screen" rel="stylesheet" type="text/css" />
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
-      <script src="/assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
-      <script src="/assets/js/jquery.timeago.js" type="text/javascript"></script>
-    </meta>
+    <title>Gatis Tomsons: gatis tomsons</title>
+    
+    <meta name="description" content="Gata Tomsona tīmekļa vietne" />
+    
+    <meta content="index, follow" name="robots" />
+    <meta content="Gatis Tomsons" name="author" />
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="http://fonts.googleapis.com/css?family=Comfortaa:700|Jura:300" rel="stylesheet" type="text/css" />
+    <link href="http://gacha.id.lv/atom.xml" rel="alternate" title="Raksti RSS formātā" type="application/atom+xml" />
+    <link href="/assets/css/global.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/pygments_pastie.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/colorbox.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+    <script src="/assets/js/jquery.timeago.js" type="text/javascript"></script>
   </head>
   <body>
     <header>
@@ -52,13 +51,15 @@
 </section>
 <div class="clear"></div>
 <section class="column flickr">
-  <h2>Attēli no flickr</h2>
-  <div class="content">Lādējam Flickr...</div></section>
+  <h2>Attēli no <a href="http://www.flickr.com/photos/gacha_lv">flickr<a/></h2>
+  <div class="content">Lādējam Flickr...</div>
+</section>
 <section class="column googleplus">
-  <h2>Ieraksti no Google+</h2>
-  <div class="content">Lādējam Google+...</div></section>
+  <h2>Ieraksti no <a href="https://plus.google.com/114751685420817896215/posts">Google+</a></h2>
+  <div class="content">Lādējam Google+...</div>
+</section>
 <section class="column twitter">
-  <h2>Twitter</h2>
+  <h2><a href="https://twitter.com/#!/gacha">Twitter</a></h2>
   <div class="content">Lādējam Twitter...</div>
 </section>
 <script>
@@ -99,7 +100,7 @@
         }
       });
       var p = $("<p>");
-      p.append($("<strong><time>"+$.timeago(item.published)+"</time></strong><br />"))
+      p.append($('<time datetime="'+item.published+'">'+$.timeago(item.published)+'</time>'));
       if(item.object.content){
         p.append(item.object.content);
       }else{
@@ -118,7 +119,7 @@
     content.html("");
     $.each(data.value.items, function(idx,item) {
       var p = $("<p>");
-      p.append($("<strong><time>"+$.timeago(item.published)+"</time></strong><br />"))
+      p.append($('<time datetime="'+item.published+'">'+$.timeago(item.published)+'</time>'));
       p.append(item.content);
       content.append(p);
     });
