@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="lv">
+  <head>
+    <meta charset="utf-8" />
+      <title>Gatis Tomsons: django autocompletefield</title>
+      
+      <meta name="description" content="Gata Tomsona tīmekļa vietne" />
+      
+      <meta content="index, follow" name="robots" />
+      <meta content="Gatis Tomsons" name="author" />
+      <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+      <link href="http://fonts.googleapis.com/css?family=Comfortaa:700|Jura:300" rel="stylesheet" type="text/css" />
+      <link href="http://gacha.id.lv/atom.xml" rel="alternate" title="Raksti RSS formātā" type="application/atom+xml" />
+      <link href="/assets/css/global.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/assets/css/pygments_pastie.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/assets/css/colorbox.css" media="screen" rel="stylesheet" type="text/css" />
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+      <script src="/assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+      <script src="/assets/js/jquery.timeago.js" type="text/javascript"></script>
+    </meta>
+  </head>
+  <body>
+    <header>
+      <a href="/">
+        <h1>Gatis Tomsons</h1>
+        <h2>ruby, web, linux, mtb</h2>
+      </a>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="/">Sākums</a></li>
+        <li><a href="/arhivs.html">Rakstu arhīvs</a></li>
+        <li><a href="/lapas-karte.html">Viss cits</a></li>
+      </ul>
+    </nav>
+    <section id="content">
+<article>
+  <h1>Django AutoCompleteField</h1> 
+  <div class="body">
+
+		
+			
+<p>Tie, kuri izmanto <a href="http://www.djangoproject.com/">Django</a> savu web lapu izstrādē, vai arī vēlas to izmantot iespējams zin, ka kādu laiciņu jau ir pieejama jauna formu veidošanas bibliotēka <a href="http://www.djangoproject.com/documentation/newforms/">newforms</a>. Viens no jauninājumiem ir tas, ka ir iespējams norādīt <a href="http://termini.laka.lv/terms/widget/">widgetu</a> katram formas elementam. Widgets var būt kāds no jau esošajiem, kā arī pašu veidots.
+</p>
+<p>Tā, kā es esmu sācis izmantot <a href="http://wiki.script.aculo.us/scriptaculous/">script.aculo.us</a> javascript bibliotēku, tad radās nepieciešamība izmantot burvīgo <a href="http://wiki.script.aculo.us/scriptaculous/show/Ajax.Autocompleter">Ajax.Autocompleter</a> lauku arī iekš Django, tad nu rezultāts ir sekojošs.
+</p>
+<p /><div class="source"><pre><span class="k">from</span> <span class="nn">django</span> <span class="k">import</span> <span class="n">newforms</span> <span class="k">as</span> <span class="n">forms</span>
+<span class="k">from</span> <span class="nn">django.newforms.widgets</span> <span class="k">import</span> <span class="n">TextInput</span><span class="p">,</span><span class="n">flatatt</span>
+<span class="k">from</span> <span class="nn">django.newforms.util</span> <span class="k">import</span> <span class="n">smart_unicode</span>
+<span class="k">from</span> <span class="nn">django.utils.html</span> <span class="k">import</span> <span class="n">escape</span>
+
+<span class="k">class</span> <span class="nc">AutoCompleteField</span><span class="p">(</span><span class="n">TextInput</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">url</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s">&#39;{}&#39;</span><span class="p">,</span><span class="n">attrs</span><span class="o">=</span><span class="p">{}):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">url</span>	 <span class="o">=</span> <span class="n">url</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">attrs</span>	 <span class="o">=</span> <span class="n">attrs</span>
+	
+	<span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+		<span class="n">final_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_attrs</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+			<span class="n">value</span> <span class="o">=</span> <span class="n">smart_unicode</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+			<span class="n">final_attrs</span><span class="p">[</span><span class="s">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">escape</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+		<span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">):</span> <span class="n">final_attrs</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;id_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">name</span>	
+		<span class="k">return</span> <span class="s">u&#39;&lt;input /&gt; &lt;div class=&quot;autocomplete&quot; id=&quot;box_</span><span class="si">%(name)s</span><span class="s">&quot;&gt;&lt;/div&gt; &lt;script type=&quot;text/javascript&quot;&gt;new Ajax.Autocompleter(</span><span class="se">\&#39;</span><span class="si">%(id)s</span><span class="se">\&#39;</span><span class="s">, </span><span class="se">\&#39;</span><span class="s">box_</span><span class="si">%(name)s</span><span class="se">\&#39;</span><span class="s">, </span><span class="se">\&#39;</span><span class="si">%(url)s</span><span class="se">\&#39;</span><span class="s">, </span><span class="si">%(options)s</span><span class="s">);&lt;/script&gt;&#39;</span> <span class="o">%</span> <span class="p">{</span>
+			<span class="s">&#39;attrs&#39;</span>	<span class="p">:</span> <span class="n">flatatt</span><span class="p">(</span><span class="n">final_attrs</span><span class="p">),</span>
+			<span class="s">&#39;name&#39;</span>	<span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+			<span class="s">&#39;id&#39;</span>	<span class="p">:</span> <span class="n">final_attrs</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span>
+			<span class="s">&#39;url&#39;</span>	<span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+			<span class="s">&#39;options&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span>
+		<span class="p">}</span>
+</pre></div>
+
+
+<p>Lai izmantotu šo widgetu, to nepieciešams saglabāt savā projektā un importēt attiecīgā vietā.
+</p>
+<p /><div class="source"><pre><span class="k">from</span> <span class="nn">myproject.widgets</span> <span class="k">import</span> <span class="n">AutoCompleteField</span>
+<span class="o">.....</span>
+<span class="n">person</span>	<span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Person&#39;</span><span class="p">,</span><span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">widget</span><span class="o">=</span><span class="n">AutoCompleteField</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s">&#39;/person/autocomplete/&#39;</span><span class="p">))</span>
+<span class="o">.....</span>
+</pre></div>
+
+
+<p>Tik nevajadzētu piemirst, ka vispirms lapas <code>head</code> ir jaievieto attiecīgie javascript faili.
+</p>
+
+		
+	</div>
+  <div class="clear"></div>
+  <div class="pagination">
+    <ul>
+    
+      <li class="prev"><a href="/blog/22/01/2007/sniegs" title="Sniegs">&larr; Iepriekšējais</a></li>
+    
+      <li><a href="/arhivs.html">Rakstu arhīvs</a></li>
+    
+      <li class="next"><a href="/blog/26/01/2007/fona-bildte" title="Fona bildīte">Nākamais &rarr;</a></li>
+    
+    </ul>
+  </div>
+  
+</article>
+<aside>
+  <h4>Publicēts</h4>
+  <time>Liquid error: translation missing: lv.time.formats.long_date</time>
+  
+    <h4>Tagi</h4>
+    <ul class="tag_box">
+    
+    
+
+
+  
+     
+    	<li><a href="/tagi.html#python-ref">python <span>9</span></a></li>
+     
+    	<li><a href="/tagi.html#web-ref">web <span>8</span></a></li>
+     
+    	<li><a href="/tagi.html#django-ref">django <span>1</span></a></li>
+     
+    	<li><a href="/tagi.html#kods-ref">kods <span>6</span></a></li>
+    
+  
+
+
+
+    </ul>
+    <br class="clear" />
+  
+  <g:plusone annotation="inline"></g:plusone>
+  <script type="text/javascript">
+    window.___gcfg = {lang: 'lv'};
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+</aside>
+<div class="clear"></div></section>
+    <footer id="footer">
+      <p>© 2006-2012 Gatis Tomsons</p>
+      <p>
+        <a href="http://validator.w3.org/check?url=http://gacha.id.lv/blog/26/01/2007/django-autocompletefield&amp;charset=utf-8">
+          <img alt="Valid HTML5" src="/assets/images/w3c-html5.gif" />
+        </a>
+      </p>
+    </footer>
+    
+  </body>
+</html>

@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="lv">
+  <head>
+    <meta charset="utf-8" />
+      <title>Gatis Tomsons: emerald theme downloader</title>
+      
+      <meta name="description" content="Gata Tomsona tīmekļa vietne" />
+      
+      <meta content="index, follow" name="robots" />
+      <meta content="Gatis Tomsons" name="author" />
+      <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+      <link href="http://fonts.googleapis.com/css?family=Comfortaa:700|Jura:300" rel="stylesheet" type="text/css" />
+      <link href="http://gacha.id.lv/atom.xml" rel="alternate" title="Raksti RSS formātā" type="application/atom+xml" />
+      <link href="/assets/css/global.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/assets/css/pygments_pastie.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/assets/css/colorbox.css" media="screen" rel="stylesheet" type="text/css" />
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+      <script src="/assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+      <script src="/assets/js/jquery.timeago.js" type="text/javascript"></script>
+    </meta>
+  </head>
+  <body>
+    <header>
+      <a href="/">
+        <h1>Gatis Tomsons</h1>
+        <h2>ruby, web, linux, mtb</h2>
+      </a>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="/">Sākums</a></li>
+        <li><a href="/arhivs.html">Rakstu arhīvs</a></li>
+        <li><a href="/lapas-karte.html">Viss cits</a></li>
+      </ul>
+    </nav>
+    <section id="content">
+<article>
+  <h1>Emerald theme downloader</h1> 
+  <div class="body">
+
+		
+			
+<p>Šodien uzliku <a href="http://wiki.compiz-fusion.org/Decorators/Emerald">emeraldu</a> uz sava ubuntu un gribēju arī uzlikt <em>emerald-themes</em> paku, bet uz hardy kaut kā neizdevās, kaut gan agrāk uz vecāka ubuntu bija sanācis. Googlē neko prātīgu neatradu, tikai to, ka <a href="http://themes.beryl-project.org/">šeit</a> ir iespējams novilkt visas tās tēmas, bet pa vienai. Ko pa vienai čakarēties, velkam visas uz reiz un tad provējam, kura patīk, kur ne. Tad atcerējos, ka esmu programmētājs un fiksi uztaisīju ar <a href="http://ruby-lang.org">Ruby</a> palīdzību skriptu, kurš novelk visas tēmas un saglabā tās jūsu norādītajā mapē. Novelkam skriptu uz desktopa un izpildam konsolē komandu <code>ruby etd.rb ./Themes</code>, <em>./Themes</em> vietā vari likt jebkādu mapes nosaukumu.
+</p>
+<p>Skriptu var dabūt <a href="http://gacha.id.lv/media/upload/dev/etd/etd.rb">te</a>, lai tas palaistos nepieciešams <a href="http://ruby-lang.org">Ruby</a> un <a href="http://code.whytheluckystiff.net/hpricot/">hpricot</a> bibliotēka. Uz ubuntu to var dabūt ar sekojošu komandu <code>sudo apt-get install ruby rubygems build-essential &amp;&amp; sudo gem install hpricot</code>, kā citur skatāties paši.
+</p>
+<h3>Papildināts 11.09.08.</h3>
+<p>Skriptu izpildot nav vairs japadod mape, kur tas nokačā tēmas - tas tēmas saglabā noklusētajā emerald mapē <code>/home/user/.emerald/themes</code>. Pēc skripta izpildis vairs nekas nav jāimportē, atverot emerald-theme-manager tur jau būs visas jaunās tēmas.
+</p>
+
+		
+	</div>
+  <div class="clear"></div>
+  <div class="pagination">
+    <ul>
+    
+      <li class="prev"><a href="/blog/08/09/2008/atvrt-koda-interneta-veikals" title="Atvērtā koda interneta veikals">&larr; Iepriekšējais</a></li>
+    
+      <li><a href="/arhivs.html">Rakstu arhīvs</a></li>
+    
+      <li class="next"><a href="/blog/14/09/2008/tvu-diena" title="Tēvu diena">Nākamais &rarr;</a></li>
+    
+    </ul>
+  </div>
+  
+</article>
+<aside>
+  <h4>Publicēts</h4>
+  <time>Liquid error: translation missing: lv.time.formats.long_date</time>
+  
+    <h4>Tagi</h4>
+    <ul class="tag_box">
+    
+    
+
+
+  
+     
+    	<li><a href="/tagi.html#ruby-ref">ruby <span>4</span></a></li>
+     
+    	<li><a href="/tagi.html#code-ref">code <span>1</span></a></li>
+     
+    	<li><a href="/tagi.html#ubunt-ref">ubunt <span>8</span></a></li>
+    
+  
+
+
+
+    </ul>
+    <br class="clear" />
+  
+  <g:plusone annotation="inline"></g:plusone>
+  <script type="text/javascript">
+    window.___gcfg = {lang: 'lv'};
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+</aside>
+<div class="clear"></div></section>
+    <footer id="footer">
+      <p>© 2006-2012 Gatis Tomsons</p>
+      <p>
+        <a href="http://validator.w3.org/check?url=http://gacha.id.lv/blog/10/09/2008/emerald-theme-downloader&amp;charset=utf-8">
+          <img alt="Valid HTML5" src="/assets/images/w3c-html5.gif" />
+        </a>
+      </p>
+    </footer>
+    
+  </body>
+</html>

@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="lv">
+  <head>
+    <meta charset="utf-8" />
+      <title>Gatis Tomsons: media faili no tava ubuntu uz tava tv izmantojot mediatomb</title>
+      
+      <meta name="description" content="Gata Tomsona tīmekļa vietne" />
+      
+      <meta content="index, follow" name="robots" />
+      <meta content="Gatis Tomsons" name="author" />
+      <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+      <link href="http://fonts.googleapis.com/css?family=Comfortaa:700|Jura:300" rel="stylesheet" type="text/css" />
+      <link href="http://gacha.id.lv/atom.xml" rel="alternate" title="Raksti RSS formātā" type="application/atom+xml" />
+      <link href="/assets/css/global.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/assets/css/pygments_pastie.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/assets/css/colorbox.css" media="screen" rel="stylesheet" type="text/css" />
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+      <script src="/assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+      <script src="/assets/js/jquery.timeago.js" type="text/javascript"></script>
+    </meta>
+  </head>
+  <body>
+    <header>
+      <a href="/">
+        <h1>Gatis Tomsons</h1>
+        <h2>ruby, web, linux, mtb</h2>
+      </a>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="/">Sākums</a></li>
+        <li><a href="/arhivs.html">Rakstu arhīvs</a></li>
+        <li><a href="/lapas-karte.html">Viss cits</a></li>
+      </ul>
+    </nav>
+    <section id="content">
+<article>
+  <h1>Media faili no tava Ubuntu uz tava TV izmantojot MediaTomb</h1> 
+  <div class="body"><p>Daudziem jaunajiem TV ir iespēja to pieslēgt pie lokālā tikla, kā reiz manam Samsungam ir šāda iespēja un beidzot izdevās to pievienot lokālajam tiklam. Mazliet papētot noskaidrojās, ka TV spēj atrast lokālajā tiklā esošus <a href='http://en.wikipedia.org/wiki/Digital_Living_Network_Alliance'>UPnP/DLNA</a> serverus, tad no visiem <a href='http://www.rbgrn.net/content/21-how-to-choose-dlna-media-server-windows-mac-os-x-or-linux'>šeit uzskaitītajiem</a> serveriem es izvēlējos <a href='http://mediatomb.cc/'>MediaTomb</a>, jo tas ir bezmaksas, pieejams uz Ubuntu un to ir iespējams nokonfigurēt tā, lai mans Samsung to redzētu.</p>
+
+<p><img alt='AllShare' src='http://www.samsung.com/ca/system/consumer/product/2010/04/01/un46c6300sfxzc/AllShare_DLNA_Certified.jpg' /></p>
+
+<p>Tātad liekam to virsū <code>sudo apt-get install mediatomb</code> un uzreiz pēc uzstādīšanas tas jau būs pieejams caur <a href='http://127.0.0.1:49152/'>http://127.0.0.1:49152/</a>, tikai tas mums neder jo tiek palaist ar mediatomb lietotāju, bet mums tas būs jāpalaiž ar mūsu lietotāju, lai varam izmantot visus savus media failus, tāpēc apstādināsim serveri <code>sudo service mediatomb stop</code>. Ja nu tomēr vēlaties darbināt to ar citu lietotāju, tad jāatceras tam pievienot attiecīgās atļaujas uz failiem.</p>
+
+<p>Palaižam serveri <code>mediatomb</code>, kas izveido mums konfigurācijas failu, kuru atveram ar <code>gedit ~/.mediatomb/config.xml</code> un veicam sekojošas izmaiņas:</p>
+
+<ul>
+<li>
+<p>Ja serveris palaižas ne vēlajamā tiklā, tad to varam norādīt zem <code>&lt;server&gt;</code> pievienojot <code>&lt;interface&gt;wlan0&lt;/interface&gt; </code>.</p>
+</li>
+
+<li>
+<p><code>&lt;ui enabled=&quot;no&quot; show-tooltips=&quot;yes&quot;&gt;</code> - <code>enabled=&quot;yes&quot;</code> - lai strādātu WEB interfeiss</p>
+</li>
+
+<li>
+<p><code>&lt;name&gt;MediaTomb&lt;/name&gt;</code> uz <code>&lt;name&gt;Jāņa kaste&lt;/name&gt;</code> - jeb kā nu vēlies lai tavs MEDIA serveris saucās.</p>
+</li>
+
+<li>
+<p><code>&lt;protocolInfo extend=&quot;no&quot;/&gt;</code> - <code>extend=&quot;yes&quot;</code></p>
+</li>
+
+<li>
+<p><strong>iespējams citiem TV šeit ir jāieraksta kas cits</strong> - to jautā googlei, bet konkrēti šo es atradu <a href='http://ubuntuforums.org/showthread.php?t=1198689'>Ubuntu forumā</a>, kas domāts tieši <strong>Samsung TV</strong>. Tātad atkomentējam <code>&lt;custom-http-headers&gt;</code> un ievietojam tur šīs rindas:</p>
+
+<pre><code>  &lt;add header=&quot;transferMode.dlna.org: Streaming&quot;/&gt;
+  &lt;add header=&quot;contentFeatures.dlna.org: DLNA.ORG_OP=01;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=017000 00000000000000000000000000&quot;/&gt;</code></pre>
+</li>
+
+<li>
+<p>Iekš <code>&lt;extension-mimetype ignore-unknown=&quot;no&quot;&gt;</code> pievienojam <code>&lt;map from=&quot;avi&quot; to=&quot;video/mpeg&quot;/&gt;</code> un <code>&lt;map from=&quot;mkv&quot; to=&quot;video/x-matroska&quot;/&gt;</code> nomainām pret <code>&lt;map from=&quot;mkv&quot; to=&quot;video/mpeg&quot;/&gt;</code> - šādi būs redzami mkv un avi faili.</p>
+</li>
+
+<li>
+<p><code>&lt;transcoding enabled=&quot;no&quot;&gt;</code> - <code>enabled=&quot;yes&quot;</code></p>
+</li>
+</ul>
+
+<p>Restartējam serveri <code>mediatomb</code> un atveram <a href='http://127.0.0.1:49152/'>http://127.0.0.1:49152/</a> un pievienojam savas Audio/Video/Bilžu mapes - atkaribā no failu daudzumu tie visi tiks pievienoti pēc neilga laika. Tagad atverot uz sava TV DLNA pārlūku, Samsung gadījumā &#8220;All share&#8221; sadaļu, jums tur būtu jāredz savs dators un jāvar redzēt visi pievienotie faili, ja nu tā nav, tad iespējams jums jāatver ports &#8220;49152&#8221;, jeb jānomaina <code>&lt;interface&gt;</code> uz to pašu, kura subnetā atrodas pats TV, ja šis nelīdz, tad varam palaist serveri ar &#8220;-D&#8221; un pētīt to debug režīmā.</p>
+
+<p>Šim serverim ir vēl viena ļoti noderīga iespēja - &#8221;<a href='http://mediatomb.cc/pages/transcoding'>transcoding</a>&#8221;. Ja tavs TV atbalsta tikai mpeg/mp3/wav formātus, bet tavā kolekcijā ir arī ogg/ogv/wma/acc u.c. formāti, tad ir iespēja apmānīt TV un &#8220;on-the-fly&#8221; pārveidojot nesaprotamo formātu uz saprotamu izmantojot vlc vai ffmpeg. Tas konfigurējams sadaļā <code>&lt;transcoding enabled=&quot;yes&quot;&gt;</code> kur var pievienot attiecigus profilus un tos savienojot ar dažādiem failu formātiem sadaļā <code>&lt;mimetype-profile-mappings&gt;</code>. Pāris noderīgi profili atrodami <a href='http://en.gentoo-wiki.com/wiki/MediaTomb#Alternative_Transcoders'>Gentoo-wiki</a>.</p>
+
+<p>Vēl vari pameklēt kādu DLNA aplikāciju savam Android vai Iphone tālrunim, ar kuru ari tu varēsi atskaņot media failus savā TV.</p></div>
+  <div class="clear"></div>
+  <div class="pagination">
+    <ul>
+    
+      <li class="prev"><a href="/blog/15/10/2010/htc-desire-vs-iphone-3g" title="HTC Desire vs Iphone 3G">&larr; Iepriekšējais</a></li>
+    
+      <li><a href="/arhivs.html">Rakstu arhīvs</a></li>
+    
+      <li class="next"><a href="/blog/18/02/2011/pilnmness-perigejs" title="Pilnmēness perigejs">Nākamais &rarr;</a></li>
+    
+    </ul>
+  </div>
+  
+    <div id="disqus_thread">
+      
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'gachaswebs'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+    </div>
+  
+</article>
+<aside>
+  <h4>Publicēts</h4>
+  <time>Liquid error: translation missing: lv.time.formats.long_date</time>
+  
+    <h4>Tagi</h4>
+    <ul class="tag_box">
+    
+    
+
+
+  
+     
+    	<li><a href="/tagi.html#dlna-ref">dlna <span>1</span></a></li>
+     
+    	<li><a href="/tagi.html#tv-ref">tv <span>1</span></a></li>
+     
+    	<li><a href="/tagi.html#linux-ref">linux <span>15</span></a></li>
+     
+    	<li><a href="/tagi.html#ubunt-ref">ubunt <span>8</span></a></li>
+    
+  
+
+
+
+    </ul>
+    <br class="clear" />
+  
+  <g:plusone annotation="inline"></g:plusone>
+  <script type="text/javascript">
+    window.___gcfg = {lang: 'lv'};
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+</aside>
+<div class="clear"></div></section>
+    <footer id="footer">
+      <p>© 2006-2012 Gatis Tomsons</p>
+      <p>
+        <a href="http://validator.w3.org/check?url=http://gacha.id.lv/blog/09/01/2011/media-faili-no-tava-ubuntu-uz-tava-tv-izmantojot-mediatomb&amp;charset=utf-8">
+          <img alt="Valid HTML5" src="/assets/images/w3c-html5.gif" />
+        </a>
+      </p>
+    </footer>
+    
+  </body>
+</html>
