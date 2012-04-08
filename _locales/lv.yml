@@ -33,6 +33,7 @@ lv:
     formats:
       default: '%d.%m.%Y.'
       long: '%Y. gada %e. %B'
+      long_date: '%Y. gada %e.'
       short: '%e. %B'
     month_names:
     - 
