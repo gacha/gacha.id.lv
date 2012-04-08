@@ -208,12 +208,6 @@ aside .tag_box li:first-child {
   display: inline;
   padding: 0 30px;
 }
-#___plusone_0 { margin-top: 15px !important; }
-.tag_box {
-  list-style-type: none;
-  padding:0;
-  margin:0;
-}
 #cboxLoadedContent p {
   text-align: center;
   line-height: 1.5em;
@@ -260,10 +254,11 @@ section.twitter p, section.googleplus p {
   padding-bottom: 3px;
   background: url('/assets/images/dots.gif') bottom left repeat-x;
 }
-.column .date {
-  font-size: 10px;
-  font-variant:small-caps;
-  font-weight:bold;
+.column time {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  display: block;
+  color: #999;
 }
 #about {
   width: 70%;

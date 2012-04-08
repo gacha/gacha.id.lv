@@ -1,7 +1,6 @@
 ---
 layout: index
 title: Gatis Tomsons
-tagline: 
 ---
 {% include JB/setup %}
 <section class="body about">
@@ -18,13 +17,15 @@ tagline:
 </section>
 <div class="clear"></div>
 <section class="column flickr">
-  <h2>Attēli no flickr</h2>
-  <div class="content">Lādējam Flickr...</div></section>
+  <h2>Attēli no <a href="http://www.flickr.com/photos/gacha_lv">flickr<a/></h2>
+  <div class="content">Lādējam Flickr...</div>
+</section>
 <section class="column googleplus">
-  <h2>Ieraksti no Google+</h2>
-  <div class="content">Lādējam Google+...</div></section>
+  <h2>Ieraksti no <a href="https://plus.google.com/114751685420817896215/posts">Google+</a></h2>
+  <div class="content">Lādējam Google+...</div>
+</section>
 <section class="column twitter">
-  <h2>Twitter</h2>
+  <h2><a href="https://twitter.com/#!/gacha">Twitter</a></h2>
   <div class="content">Lādējam Twitter...</div>
 </section>
 <script>
@@ -65,7 +66,7 @@ tagline:
         }
       });
       var p = $("<p>");
-      p.append($("<strong><time>"+$.timeago(item.published)+"</time></strong><br />"))
+      p.append($('<time datetime="'+item.published+'">'+$.timeago(item.published)+'</time>'));
       if(item.object.content){
         p.append(item.object.content);
       }else{
@@ -84,7 +85,7 @@ tagline:
     content.html("");
     $.each(data.value.items, function(idx,item) {
       var p = $("<p>");
-      p.append($("<strong><time>"+$.timeago(item.published)+"</time></strong><br />"))
+      p.append($('<time datetime="'+item.published+'">'+$.timeago(item.published)+'</time>'));
       p.append(item.content);
       content.append(p);
     });
