@@ -29,7 +29,7 @@ layout: default
 </article>
 <aside>
   <h4>Publicēts</h4>
-  <time>{{ page.date | localize: ":long_date" }}</time>
+  <time datetime="{{ page.date }}">{{ page.date | localize: ":long_date" }}</time>
   {% unless page.tags == empty %}
     <h4>Tagi</h4>
     <ul class="tag_box">

@@ -15,10 +15,10 @@ module Jekyll
     end
 
     def load_translations
-      #unless I18n::backend.instance_variable_get(:@translations)
-        I18n.backend.load_translations Dir['../_locales/*.yml']
+      unless I18n::backend.instance_variable_get(:@translations)
+        I18n.backend.load_translations Dir[File.join(File.dirname(__FILE__),'../_locales/*.yml')]
         I18n.locale = LOCALE
-      #end
+      end
     end
   end
 end
