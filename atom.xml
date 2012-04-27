@@ -4,13 +4,42 @@
  <title>Gacha's webs</title>
  <link href="http://gacha.id.lv/atom.xml" rel="self"/>
  <link href="http://gacha.id.lv"/>
- <updated>2012-04-09T01:48:44+03:00</updated>
+ <updated>2012-04-27T23:16:24+03:00</updated>
  <id>http://gacha.id.lv</id>
  <author>
    <name>Gatis Tomsons</name>
    <email>gatis.tomsons@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Z shell</title>
+   <link href="http://gacha.id.lv/blog/27/04/2012/zsh"/>
+   <updated>2012-04-27T00:00:00+03:00</updated>
+   <id>hhttp://gacha.id.lv/blog/27/04/2012/zsh</id>
+   <content type="html">&lt;img alt='Oh my zsh' class='left' src='https://s3-eu-west-1.amazonaws.com/gachaidlv/articles/oh-my-zsh.png' /&gt;
+&lt;p&gt;Jau kādu laiku lietotju &lt;a href='http://zsh.sourceforge.net/' title='ZSH'&gt;ZSH&lt;/a&gt; kā alternativu ierastajam &lt;a href='http://www.case.edu/php/chet/bash/bashtop.html' title='Bash'&gt;BASH&lt;/a&gt;. Pārejot uz ZSH nav jāapgūst kas jauns no nulles, jo ZSH ir praktiski tas pats BASH tikai ar daudziem uzlabojumiem.&lt;/p&gt;
+
+&lt;p&gt;Galvenokārt ir &lt;em&gt;autocomplete&lt;/em&gt; gandriz visam un ļoti augstā līmenī - piemēram izmantojot &lt;code&gt;ls&lt;/code&gt; vai &lt;code&gt;cat&lt;/code&gt; mapes faili sakārtojās kolonnās, kurās iespējams navigēt ar bultiņām un izdarīt izvēli, izpildot &lt;code&gt;kill&lt;/code&gt; tu redzi sarakstu ar procesiem, kur vari viegli izvelēties pareizo. Tad vēl ir kļūdu labojumi, kas arī darbojas ļoti gudri - piemēram &lt;code&gt;sudo ap-get&lt;/code&gt; pēc &lt;code&gt;&amp;lt;tab&amp;gt;&lt;/code&gt; nospiešanas kļūst par &lt;code&gt;sudo apt-get&lt;/code&gt; utt. Tā, kā komandrindā ir diezgan daudz jāatceras, tad šādi super gudri autocomplete ļoti palīdz.&lt;/p&gt;
+
+&lt;p&gt;Bet primārais iemesls, kāpēc es pārgāju uz ZSH, kad vēl par augstāk minētajām fīčām neko nezināju bija &lt;a href='https://github.com/robbyrussell/oh-my-zsh'&gt;oh-my-zsh&lt;/a&gt; ietvars ar kura palidzibu menedžē ZSH konfigurāciju. Oh-my-zsh tu vari mainīt &lt;a href='https://github.com/robbyrussell/oh-my-zsh/wiki/themes'&gt;tēmas&lt;/a&gt;, likt klāt &lt;a href='https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins'&gt;spraudņus&lt;/a&gt; ar kuru palīdzibu tava darba vide kļūst vēl ērtāka.&lt;/p&gt;
+
+&lt;p&gt;Uzliekot &lt;a href='http://git-scm.com/' title='Git'&gt;git&lt;/a&gt; spraudni ļoti viegli redzēt, kurā zarā tu pašlaik atrodies, kā arī vai ir kādas nesaglabātas izmaiņas. Un tas tiek panākts vienkārši pieliekot &lt;code&gt;git&lt;/code&gt; pie pārējiem spraudņiem &lt;code&gt;~/.zshrc&lt;/code&gt; failā - &lt;code&gt;plugins=(git ruby rvm rails rails3 bundler)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id='instalcija'&gt;Instalācija&lt;/h3&gt;
+
+&lt;p&gt;Tas ir pavisam vienkārši:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;uzliec ZSH - &lt;code&gt;sudo apt-get install zsh&lt;/code&gt; - jeb tā, kā to dara tavs pakotņu menedžeris&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh&lt;/code&gt;&lt;/li&gt;
+
+&lt;li&gt;atver jaunu konsoli un voala&lt;/li&gt;
+
+&lt;li&gt;modificē &lt;code&gt;~/.zshrc&lt;/code&gt; pēc nepieciešamības&lt;/li&gt;
+&lt;/ul&gt;</content>
+ </entry>
  
  <entry>
    <title>Ignite100 Ņūkāslā</title>

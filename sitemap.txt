@@ -10,6 +10,7 @@ http://gacha.id.lv/atom.xml
 http://gacha.id.lv/index.html
 http://gacha.id.lv/sitemap.txt
 
+http://gacha.id.lv/blog/27/04/2012/zsh
 http://gacha.id.lv/blog/24/09/2011/ignite100-newcastle
 http://gacha.id.lv/blog/26/07/2011/velotrisms-zviedrij
 http://gacha.id.lv/blog/12/06/2011/latvieu-radio-uz-android
