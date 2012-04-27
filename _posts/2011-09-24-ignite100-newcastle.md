@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Ignite100 Ņūkāslā
-categories: []
 tags: ["newcastle", "ignite100"]
 published: true
 enable_comments: true
