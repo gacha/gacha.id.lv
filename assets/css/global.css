@@ -58,6 +58,7 @@ hr {
 }
 ul {
   list-style-type: circle;
+  padding-left: 15px;
 }
 figure {
   margin: 0;
@@ -94,6 +95,7 @@ body header h2 {
 }
 #content {
   margin: 1em 1em 1em 5em;
+  overflow: hidden;
 }
 
 body > footer {
