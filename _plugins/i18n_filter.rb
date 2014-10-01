@@ -15,7 +15,7 @@ module Jekyll
     end
 
     def load_translations
-      unless I18n::backend.instance_variable_get(:@translations)
+      if I18n.backend.send(:translations).empty?
         I18n.backend.load_translations Dir[File.join(File.dirname(__FILE__),'../_locales/*.yml')]
         I18n.locale = LOCALE
       end
