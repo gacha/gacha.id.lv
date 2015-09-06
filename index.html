@@ -54,14 +54,6 @@
   <h2>Attēli no <a href="http://www.flickr.com/photos/gacha_lv">flickr</a></h2>
   <div class="content">Lādējam Flickr...</div>
 </section>
-<section class="column googleplus">
-  <h2>Ieraksti no <a href="https://plus.google.com/114751685420817896215/posts">Google+</a></h2>
-  <div class="content">Lādējam Google+...</div>
-</section>
-<section class="column twitter">
-  <h2><a href="https://twitter.com/#!/gacha">Twitter</a></h2>
-  <div class="content">Lādējam Twitter...</div>
-</section>
 <script>
   // get flickr
   $.getJSON("http://pipes.yahoo.com/pipes/pipe.run?_id=a7b56cd683115e7832be65f8f916c0a1&_render=json&_callback=?", function(data){
@@ -82,48 +74,6 @@
       $.fn.colorbox.resize(); 
     });
   });
-  // get googleplus
-  $.getJSON("https://www.googleapis.com/plus/v1/people/114751685420817896215/activities/public?alt=json&maxResults=10&pp=1&key=AIzaSyBNG5gn9Hk1fqXnzvP7l9JbgZB4nB3AsRI&callback=?", function(data){
-    var content = $('section.googleplus .content');
-    content.html("");
-    $.each(data.items, function(idx,item) {
-      var image,source_title;
-      $.each(item.object.attachments, function(idy,attachment){
-        if(attachment.image){
-          var img = $("<img>");
-          img.attr('src',attachment.image.url)
-          image = img;
-        }
-        if(attachment.displayName && attachment.url){
-          var a = $('<a href="'+attachment.url+'">'+attachment.displayName+'</a>');
-          source_title = a;
-        }
-      });
-      var p = $("<p>");
-      p.append($('<time datetime="'+item.published+'">'+$.timeago(item.published)+'</time>'));
-      if(item.object.content){
-        p.append(item.object.content);
-      }else{
-        p.append(item.title);
-      }
-      p.append($('<div class="clear"></div>'));
-      p.append(image);
-      p.append($('<div class="clear"></div>'));
-      p.append(source_title);
-      content.append(p);
-    });
-  });
-  // get twitter
-  $.getJSON("http://pipes.yahoo.com/pipes/pipe.run?_id=0cdad10dd8f01b89b8aa8eb1cbb72adf&_render=json&_callback=?", function(data){
-    var content = $('section.twitter .content');
-    content.html("");
-    $.each(data.value.items, function(idx,item) {
-      var p = $("<p>");
-      p.append($('<time datetime="'+item.published+'">'+$.timeago(item.published)+'</time>'));
-      p.append(item.content);
-      content.append(p);
-    });
-  });
 </script></article></section>
     <footer id="footer">
       <p>© 2006-2012 Gatis Tomsons</p>
@@ -133,6 +83,5 @@
         </a>
       </p>
     </footer>
-    
   </body>
 </html>
