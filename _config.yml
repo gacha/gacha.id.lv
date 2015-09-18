@@ -1,11 +1,10 @@
-# coding: utf-8
+#http://githubengineering.com/subresource-integrity/ coding: utf-8
 # This is the default format. 
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink: /blog/:day/:month/:year/:title 
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
-auto: true
-pygments: true
+highlighter: 'pygments'
 
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
@@ -17,7 +16,6 @@ author :
   email : gatis.tomsons@gmail.com
   github : eu
   twitter : gacha
-  feedburner : feedname
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -83,11 +81,11 @@ JB :
     provider : disqus
     disqus :
       short_name : gachaswebs
-   
+
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.
   # Set 'provider' to false to turn analytics off globally.
-  #        
+  #
   analytics :
     provider : google 
     google : 
@@ -104,7 +102,7 @@ JB :
   #
   sharing :
     provider : false
-    
+
   # Settings for all other include helpers can be defined by creating 
   # a hash with key named for the given helper. ex:
   #
@@ -115,4 +113,4 @@ JB :
   # and include your custom code. Your custom file must be defined at:
   #   ./_includes/custom/[HELPER]
   # where [HELPER] is the name of the helper you are overriding.
-  
+
