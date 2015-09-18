@@ -1,5 +1,4 @@
 require 'i18n'
-require 'pry-byebug'
 
 LOCALE = :lv # set your locale
 
