@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font: 14px/1.4 "Lucida Grande", Helvetica, sans-serif;
+  font: 14px/1.4 Open Sans, "Lucida Grande", Helvetica, sans-serif;
   background-color: #f3efe5;
 }
 
@@ -78,7 +78,7 @@ body > header > a:hover {
   background-color: transparent;
 }
 body header h1 { 
-  font-family: 'Comfortaa', cursive; 
+  font-family: 'Open Sans', cursive;
   color: #F4D147;
   font-size: 40px;
   text-shadow: none;
@@ -112,7 +112,7 @@ body > footer {
 nav {
   display: block;
   position: absolute;
-  top: 76px;
+  top: 77px;
   right: 50px;
 }
 nav ul {
@@ -157,7 +157,7 @@ article.page {
 article.index { width:auto;}
 article .body {
   margin-top: 15px;
-  font-family: "Droid Sans", Sans, Arial, sans-serif;
+  font-family: Open Sans, Sans, Arial, sans-serif;
 }
 article .body img {
     margin: 15px;
@@ -245,39 +245,26 @@ table tr td {
 
 /* mainpage */
 
-.column {
-  float: left;
-  width: 30%;
-  margin: 1em 1em 0 0;
-  min-height: 200px !important;
-  _height: 200px;
-  min-width: 300px;
-}
-section.twitter p, section.googleplus p {
-  padding-bottom: 3px;
-  background: url('/assets/images/dots.gif') bottom left repeat-x;
-}
 .column time {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 13px;
   display: block;
   color: #999;
 }
-#about {
-  width: 70%;
-}
-#me {
+.about {
   float: left;
-  margin: 0 1em 1em 0;
-  border: 1px solid #E0DCD1;;
+  width: 45%;
 }
-
 section.column img {
   border: 1px solid #E0DCD1;
   -moz-box-shadow: 2px 1px 10px #999;
   -webkit-box-shadow: 2px 1px 10px #999;
   box-shadow: 2px 1px 10px #999;
   margin: 5px;
+}
+section.flickr {
+  float: right;
+  width: 45%;
 }
 section.flickr a:hover {
   text-decoration: none;

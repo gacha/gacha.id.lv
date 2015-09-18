@@ -12,7 +12,7 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link href="http://fonts.googleapis.com/css?family=Comfortaa:700|Jura:300" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400|Jura:300" rel="stylesheet" type="text/css" />
     <link href="http://gacha.id.lv/atom.xml" rel="alternate" title="Raksti RSS formātā" type="application/atom+xml" />
     <link href="/assets/css/global.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="/assets/css/pygments_pastie.css" media="screen" rel="stylesheet" type="text/css" />
@@ -25,41 +25,38 @@
     <header>
       <a href="/">
         <h1>Gatis Tomsons</h1>
-        <h2>ruby, web, linux, mtb</h2>
+        <h2>rocket science</h2>
       </a>
     </header>
     <nav>
       <ul>
         <li><a href="/">Sākums</a></li>
         <li><a href="/arhivs.html">Rakstu arhīvs</a></li>
-        <li><a href="/lapas-karte.html">Viss cits</a></li>
       </ul>
     </nav>
     <section id="content">
 <article>
   <h1>Z shell</h1> 
-  <div class="body"><img alt='Oh my zsh' class='left' src='https://s3-eu-west-1.amazonaws.com/gachaidlv/articles/oh-my-zsh.png' />
-<p>Jau kādu laiku lietotju <a href='http://zsh.sourceforge.net/' title='ZSH'>ZSH</a> kā alternativu ierastajam <a href='http://www.case.edu/php/chet/bash/bashtop.html' title='Bash'>BASH</a>. Pārejot uz ZSH nav jāapgūst kas jauns no nulles, jo ZSH ir praktiski tas pats BASH tikai ar daudziem uzlabojumiem.</p>
+  <div class="body">
+<p><img alt="Oh my zsh" src="https://s3-eu-west-1.amazonaws.com/gachaidlv/articles/oh-my-zsh.png" class="left" /></p>
+
+<p>Jau kādu laiku lietotju <a href="http://zsh.sourceforge.net/" title="ZSH">ZSH</a> kā alternativu ierastajam <a href="http://www.case.edu/php/chet/bash/bashtop.html" title="Bash">BASH</a>. Pārejot uz ZSH nav jāapgūst kas jauns no nulles, jo ZSH ir praktiski tas pats BASH tikai ar daudziem uzlabojumiem.</p>
 
 <p>Galvenokārt ir <em>autocomplete</em> gandriz visam un ļoti augstā līmenī - piemēram izmantojot <code>ls</code> vai <code>cat</code> mapes faili sakārtojās kolonnās, kurās iespējams navigēt ar bultiņām un izdarīt izvēli, izpildot <code>kill</code> tu redzi sarakstu ar procesiem, kur vari viegli izvelēties pareizo. Tad vēl ir kļūdu labojumi, kas arī darbojas ļoti gudri - piemēram <code>sudo ap-get</code> pēc <code>&lt;tab&gt;</code> nospiešanas kļūst par <code>sudo apt-get</code> utt. Tā, kā komandrindā ir diezgan daudz jāatceras, tad šādi super gudri autocomplete ļoti palīdz.</p>
 
-<p>Bet primārais iemesls, kāpēc es pārgāju uz ZSH, kad vēl par augstāk minētajām fīčām neko nezināju bija <a href='https://github.com/robbyrussell/oh-my-zsh'>oh-my-zsh</a> ietvars ar kura palidzibu menedžē ZSH konfigurāciju. Oh-my-zsh tu vari mainīt <a href='https://github.com/robbyrussell/oh-my-zsh/wiki/themes'>tēmas</a>, likt klāt <a href='https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins'>spraudņus</a> ar kuru palīdzibu tava darba vide kļūst vēl ērtāka.</p>
+<p>Bet primārais iemesls, kāpēc es pārgāju uz ZSH, kad vēl par augstāk minētajām fīčām neko nezināju bija <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a> ietvars ar kura palidzibu menedžē ZSH konfigurāciju. Oh-my-zsh tu vari mainīt <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes">tēmas</a>, likt klāt <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins">spraudņus</a> ar kuru palīdzibu tava darba vide kļūst vēl ērtāka.</p>
 
-<p>Uzliekot <a href='http://git-scm.com/' title='Git'>git</a> spraudni ļoti viegli redzēt, kurā zarā tu pašlaik atrodies, kā arī vai ir kādas nesaglabātas izmaiņas. Un tas tiek panākts vienkārši pieliekot <code>git</code> pie pārējiem spraudņiem <code>~/.zshrc</code> failā - <code>plugins=(git ruby rvm rails rails3 bundler)</code>.</p>
+<p>Uzliekot <a href="http://git-scm.com/" title="Git">git</a> spraudni ļoti viegli redzēt, kurā zarā tu pašlaik atrodies, kā arī vai ir kādas nesaglabātas izmaiņas. Un tas tiek panākts vienkārši pieliekot <code>git</code> pie pārējiem spraudņiem <code>~/.zshrc</code> failā - <code>plugins=(git ruby rvm rails rails3 bundler)</code>.</p>
 
-<h3 id='instalcija'>Instalācija</h3>
+<h3 id="instalcija">Instalācija</h3>
 
-<p>Tas ir pavisam vienkārši:</p>
+<p>Tas ir pavisam vienkārši:
+- uzliec ZSH - <code>sudo apt-get install zsh</code> - jeb tā, kā to dara tavs pakotņu menedžeris
+- <code>curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh</code>
+- atver jaunu konsoli un voala
+- modificē <code>~/.zshrc</code> pēc nepieciešamības</p>
 
-<ul>
-<li>uzliec ZSH - <code>sudo apt-get install zsh</code> - jeb tā, kā to dara tavs pakotņu menedžeris</li>
-
-<li><code>curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh</code></li>
-
-<li>atver jaunu konsoli un voala</li>
-
-<li>modificē <code>~/.zshrc</code> pēc nepieciešamības</li>
-</ul></div>
+</div>
   <div class="clear"></div>
   <div class="pagination">
     <ul>
@@ -133,12 +130,7 @@
 </aside>
 <div class="clear"></div></section>
     <footer id="footer">
-      <p>© 2006-2012 Gatis Tomsons</p>
-      <p>
-        <a href="http://validator.w3.org/check?url=http://gacha.id.lv/blog/27/04/2012/zsh&amp;charset=utf-8">
-          <img alt="Valid HTML5" src="/assets/images/w3c-html5.gif" />
-        </a>
-      </p>
+      <p>© 2006-2015 Gatis Tomsons</p>
     </footer>
     
   </body>

@@ -12,7 +12,7 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link href="http://fonts.googleapis.com/css?family=Comfortaa:700|Jura:300" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400|Jura:300" rel="stylesheet" type="text/css" />
     <link href="http://gacha.id.lv/atom.xml" rel="alternate" title="Raksti RSS formātā" type="application/atom+xml" />
     <link href="/assets/css/global.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="/assets/css/pygments_pastie.css" media="screen" rel="stylesheet" type="text/css" />
@@ -25,14 +25,13 @@
     <header>
       <a href="/">
         <h1>Gatis Tomsons</h1>
-        <h2>ruby, web, linux, mtb</h2>
+        <h2>rocket science</h2>
       </a>
     </header>
     <nav>
       <ul>
         <li><a href="/">Sākums</a></li>
         <li><a href="/arhivs.html">Rakstu arhīvs</a></li>
-        <li><a href="/lapas-karte.html">Viss cits</a></li>
       </ul>
     </nav>
     <section id="content">
@@ -44,19 +43,16 @@
 			
 <p>Kā jau visi zin, tad īsti džeki backupu nekad netaisa, bet sagadījies tā, ka apstākļi spiež man to darīt. Tad nu meklēju visvienkāršāko veidu, kā to paveikt un protams pirmais, kas ienāk prātā ir <a href="http://samba.anu.edu.au/rsync/">rsync</a> programmiņa, ar kuras palīdzību var veikt visādas failu sinhronizācijas, tai skaitā arī backup veidošanu. Viņu lapusē pie <a href="http://samba.anu.edu.au/rsync/examples.html">examples</a> izmantojot pirmo piemēru izveidoju šādu skriptu:  <br />
 </p>
-<div class="highlight"><pre><code class="bash"><span class="c">#!/bin/sh</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/sh</span>
 
 <span class="nv">SOURCE</span><span class="o">=</span>/var/www/
 <span class="nv">DESTINATION</span><span class="o">=</span>/archive/www/<span class="sb">`</span>date +%A<span class="sb">`</span>
 <span class="nv">EXCLUDES</span><span class="o">=</span>/archive/www/excludes
 
 
-<span class="nv">OPTS</span><span class="o">=</span>&amp;quot;--backup --backup-dir<span class="o">=</span><span class="nv">$DESTINATION</span> --delete -a --ignore-errors --delete-excluded --exclude-from<span class="o">=</span><span class="nv">$EXCLUDES</span>&amp;quot;
+<span class="nv">OPTS</span><span class="o">=</span><span class="p">&amp;</span>quot<span class="p">;</span>--backup --backup-dir<span class="o">=</span><span class="nv">$DESTINATION</span> --delete -a --ignore-errors --delete-excluded --exclude-from<span class="o">=</span><span class="nv">$EXCLUDES</span><span class="p">&amp;</span>quot<span class="p">;</span>
 
-rsync <span class="nv">$OPTS</span> <span class="nv">$SOURCE</span> <span class="nv">$DESTINATION</span>
-</code></pre>
-</div>
-
+rsync <span class="nv">$OPTS</span> <span class="nv">$SOURCE</span> <span class="nv">$DESTINATION</span></code></pre></div>
 <p><em>SOURCE</em> ir mape, kuru arhivēt, <em>DESTINATION</em> ir mape uz kuru arhivēt un <em>EXCLUDES</em> ir fails ar lietām, kuras nav nepieciešams arhivēt. Šo skriptu ieliku <code>/etc/cron.daily/</code> mapē un uzliku tam <code>chmod +x</code>, lai tas katru dienu izpildītos. Kā rezultātā iegūšu 7 dienu arhīvu, jo <em>rsync</em> katru dienu sinhronizēs arhīvu uz mapi ar tekošās dienas nosaukumu. Vēl es <em>EXCLUDE</em> failā ierakstiju tādas rindas, kā *.jpg, *.png utm., lai taupītu hdd vietu, bet tas jau katram individuāli.  <br />
 </p>
 <p><strong>Papildināts</strong> <br />
@@ -113,12 +109,7 @@ rsync <span class="nv">$OPTS</span> <span class="nv">$SOURCE</span> <span class=
 </aside>
 <div class="clear"></div></section>
     <footer id="footer">
-      <p>© 2006-2012 Gatis Tomsons</p>
-      <p>
-        <a href="http://validator.w3.org/check?url=http://gacha.id.lv/blog/10/10/2006/7-dienu-backups&amp;charset=utf-8">
-          <img alt="Valid HTML5" src="/assets/images/w3c-html5.gif" />
-        </a>
-      </p>
+      <p>© 2006-2015 Gatis Tomsons</p>
     </footer>
     
   </body>

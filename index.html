@@ -3,7 +3,7 @@
 <html lang="lv">
   <head>
     <meta charset="utf-8" />
-    <title>Gatis Tomsons: gatis tomsons</title>
+    <title>Gatis Tomsons</title>
     
     <meta name="description" content="Gata Tomsona tīmekļa vietne" />
     
@@ -12,7 +12,7 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link href="http://fonts.googleapis.com/css?family=Comfortaa:700|Jura:300" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400|Jura:300" rel="stylesheet" type="text/css" />
     <link href="http://gacha.id.lv/atom.xml" rel="alternate" title="Raksti RSS formātā" type="application/atom+xml" />
     <link href="/assets/css/global.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="/assets/css/pygments_pastie.css" media="screen" rel="stylesheet" type="text/css" />
@@ -25,42 +25,32 @@
     <header>
       <a href="/">
         <h1>Gatis Tomsons</h1>
-        <h2>ruby, web, linux, mtb</h2>
+        <h2>rocket science</h2>
       </a>
     </header>
     <nav>
       <ul>
         <li><a href="/">Sākums</a></li>
         <li><a href="/arhivs.html">Rakstu arhīvs</a></li>
-        <li><a href="/lapas-karte.html">Viss cits</a></li>
       </ul>
     </nav>
     <section id="content">
-<article class="index">
+<article class="page">
+  <h1></h1>
+  <div class="body">
 <section class="body about">
   <p>
     <img class="left" title="Es cēsu maratonā" src="https://s3-eu-west-1.amazonaws.com/gachaidlv/pages/index/me_small.png" />
-    Šī ir Gata Tomsona personīgā tīmekļa vietne, kur ir atrodams šis/tas saistībā ar viņa darbu un atpūtu. Gatis strādā par tīmekļa aplikāciju izstrādātāju un brīvajā laikā aizraujas ar
-    <abbr title="Kalnu velosipēds">MTB</abbr>
-    un labprāt piedalās
-    arī citās sporta aktivitātēs.
+    Čau, strādāju par Ruby web programmētāju uzņēmumā <a href="http://www.tieto.lv/" target="_blank">Tieto Latvia</a> un brīvajā laikā
+    uzlādējos braucot ar velo pa mežu vai šoseju, šada tad nopeldu kādu kilometru. Un tas vēl nav viss :)
   </p>
   <p>
     <a href="/parmani.html">Te, mazliet vairāk pats par sevi...</a>
   </p>
 </section>
-<div class="clear"></div>
 <section class="column flickr">
-  <h2>Attēli no <a href="http://www.flickr.com/photos/gacha_lv">flickr</a></h2>
   <div class="content">Lādējam Flickr...</div>
-</section>
-<section class="column googleplus">
-  <h2>Ieraksti no <a href="https://plus.google.com/114751685420817896215/posts">Google+</a></h2>
-  <div class="content">Lādējam Google+...</div>
-</section>
-<section class="column twitter">
-  <h2><a href="https://twitter.com/#!/gacha">Twitter</a></h2>
-  <div class="content">Lādējam Twitter...</div>
+  <p>Attēli no <a href="http://www.flickr.com/photos/gacha_lv">flickr</a></p>
 </section>
 <script>
   // get flickr
@@ -82,56 +72,13 @@
       $.fn.colorbox.resize(); 
     });
   });
-  // get googleplus
-  $.getJSON("https://www.googleapis.com/plus/v1/people/114751685420817896215/activities/public?alt=json&maxResults=10&pp=1&key=AIzaSyBNG5gn9Hk1fqXnzvP7l9JbgZB4nB3AsRI&callback=?", function(data){
-    var content = $('section.googleplus .content');
-    content.html("");
-    $.each(data.items, function(idx,item) {
-      var image,source_title;
-      $.each(item.object.attachments, function(idy,attachment){
-        if(attachment.image){
-          var img = $("<img>");
-          img.attr('src',attachment.image.url)
-          image = img;
-        }
-        if(attachment.displayName && attachment.url){
-          var a = $('<a href="'+attachment.url+'">'+attachment.displayName+'</a>');
-          source_title = a;
-        }
-      });
-      var p = $("<p>");
-      p.append($('<time datetime="'+item.published+'">'+$.timeago(item.published)+'</time>'));
-      if(item.object.content){
-        p.append(item.object.content);
-      }else{
-        p.append(item.title);
-      }
-      p.append($('<div class="clear"></div>'));
-      p.append(image);
-      p.append($('<div class="clear"></div>'));
-      p.append(source_title);
-      content.append(p);
-    });
-  });
-  // get twitter
-  $.getJSON("http://pipes.yahoo.com/pipes/pipe.run?_id=0cdad10dd8f01b89b8aa8eb1cbb72adf&_render=json&_callback=?", function(data){
-    var content = $('section.twitter .content');
-    content.html("");
-    $.each(data.value.items, function(idx,item) {
-      var p = $("<p>");
-      p.append($('<time datetime="'+item.published+'">'+$.timeago(item.published)+'</time>'));
-      p.append(item.content);
-      content.append(p);
-    });
-  });
-</script></article></section>
+</script>
+
+</div>
+  
+</article></section>
     <footer id="footer">
-      <p>© 2006-2012 Gatis Tomsons</p>
-      <p>
-        <a href="http://validator.w3.org/check?url=http://gacha.id.lv/index.html&amp;charset=utf-8">
-          <img alt="Valid HTML5" src="/assets/images/w3c-html5.gif" />
-        </a>
-      </p>
+      <p>© 2006-2015 Gatis Tomsons</p>
     </footer>
     
   </body>
