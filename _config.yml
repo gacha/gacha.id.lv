@@ -6,6 +6,9 @@ permalink: /blog/:day/:month/:year/:title
 exclude: ["Gemfile", "Gemfile.lock", "README.md", "Rakefile"]
 highlighter: 'pygments'
 
+# set your locale
+lang: lv
+
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
